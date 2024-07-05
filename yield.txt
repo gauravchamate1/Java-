@@ -1,0 +1,15 @@
+1. yield() Method
+Suppose there are three threads t1, t2, and t3. Thread t1 gets the processor and starts its execution and thread t2 and t3 are in Ready/Runnable state. The completion time for thread t1 is 5 hours and the completion time for t2 is 5 minutes. Since t1 will complete its execution after 5 hours, t2 has to wait for 5 hours to just finish 5 minutes job. In such scenarios where one thread is taking too much time to complete its execution, we need a way to prevent the execution of a thread in between if something important is pending. yield() helps us in doing so. 
+
+The yield() basically means that the thread is not doing anything particularly important and if any other threads or processes need to be run, they should run. Otherwise, the current thread will continue to run.
+
+
+
+Use of yield method: 
+
+Whenever a thread calls java.lang.Thread.yield method gives hint to the thread scheduler that it is ready to pause its execution. The thread scheduler is free to ignore this hint.
+If any thread executes the yield method, the thread scheduler checks if there is any thread with the same or high priority as this thread. If the processor finds any thread with higher or same priority then it will move the current thread to Ready/Runnable state and give the processor to another thread and if not – the current thread will keep executing.
+Once a thread has executed the yield method and there are many threads with the same priority is waiting for the processor, then we can’t specify which thread will get the execution chance first.
+The thread which executes the yield method will enter in the Runnable state from Running state.
+Once a thread pauses its execution, we can’t specify when it will get a chance again it depends on the thread scheduler.
+The underlying platform must provide support for preemptive scheduling if we are using the yield method.
